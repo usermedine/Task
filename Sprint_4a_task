@@ -1,0 +1,71 @@
+#1) İstifadəçidən iki rəqəm və bir əməliyyat (toplama, çıxma, vurma, bölmə) daxil etməsini tələb edən funksiya yazın. Mümkün xətaları (ValueError, TypeError və s.) idarə edin və müvafiq mesajlar çıxarın. Sonda da "Hesablama bitdi" mesajı çap olunsun.
+def kalkulyator():
+    try:
+        reqem1 = float(input("Birinci reqemi daxil edin: "))
+        reqem2 = float(input("İkinci reqemi daxil edin: "))
+        emeliyyat = input("Emeliyyati daxil edin (+, -, *, /): ")
+        
+        if emeliyyat == '+':
+            print(f"Netice: {reqem1 + reqem2}")
+        elif emeliyyat == '-':
+            print(f"Netice: {reqem1 - reqem2}")
+        elif emeliyyat == '*':
+            print(f"Netice: {reqem1 * reqem2}")
+        elif emeliyyat == '/':
+            print(f"Netice: {reqem1 / reqem2}")
+        else:
+            print("Yanlis emeliyyat!")
+    except ValueError:
+        print("Xeta: Reqem daxil edin!")
+    except ZeroDivisionError:
+        print("Xeta: Sifira bolme mumkun deyil!")
+    except Exception as e:
+        print(f"Gozlenilmeyen xeta: {e}")
+    finally:
+        print("Hesablama bitdi")
+
+
+#2) 1-dən 50-yə qədər olan rəqəmlərdən yalnız 11ə qalıqsız bölünənlərini list olaraq qaytarın.
+def bolunenler():
+    return [i for i in range(1, 51) if i % 11 == 0]
+#3) Verilmiş sözlər siyahısından (["kitab", "qələm", "defter", "silgi"]) hər sözün ilk hərfini list olaraq qaytarın.
+def sozlerin_ilk_herfi():
+    sozler = ["kitab", "qələm", "defter", "silgi"]
+    return [soz[0] for soz in sozler]
+
+
+#4) Şəhər adları (["Bakı", "Gəncə", "Sumqayıt"]) və kodları ([12, 22, 18]) siyahılarından {şəhər: kod} dictionary olaraq qaytarın.
+def seher_kodlari():
+    seher_adlari = ["Bakı", "Gəncə", "Sumqayıt"]
+    kodlar = [12, 22, 18]
+    return dict(zip(seher_adlari, kodlar))
+
+#5) Kilometri milə çevirən (mil = km * 0.621371) lambda funksiyası yazın və 5 fərqli dəyər üçün yoxlayın.
+km_mil = lambda km: km * 0.621371
+#6) [100, 200, 300, 400] qiymətlərinə 18% vergi əlavə etmək üçün map() və lambda istifadə edin.
+def vergi_elave_et():
+    qiymetler = [100, 200, 300, 400]
+    return list(map(lambda qiymet: qiymet * 1.18, qiymetler))
+
+
+#7) [3, 7, 12] və [2, 4, 6] siyahılarının elementlərini ikiqat artırmaq və sonra cəmləmək üçün map() istifadə edin.
+list1 = [3, 7, 12]
+list2 = [2, 4, 6]
+netice = list(map(lambda x, y: (x*2) + (y*2), list1, list2))
+
+def cemleme():
+    siyahi1 = [3, 7, 12]
+    siyahi2 = [2, 4, 6]
+    return sum(map(lambda x, y: (x * 2) + (y * 2), siyahi1, siyahi2))
+
+#8) [150, 80, 220, 45] siyahısından ən kiçik qiyməti reduce() ilə tapın.
+from functools import reduce
+
+qiymetler = [150, 80, 220, 45]
+en_kicik = reduce(lambda x, y: x if x < y else y, qiymetler)
+
+
+from functools import reduce
+def en_kicik_qiymet():
+    qiymetler = [150, 80, 220, 45]
+    return reduce(lambda x, y: x if x < y else y, qiymetler)
